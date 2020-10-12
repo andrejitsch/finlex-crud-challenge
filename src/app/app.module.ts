@@ -13,13 +13,15 @@ import { FooterComponent } from './footer/footer.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { EmployeeModalComponent } from './employee-list/employee-modal/employee-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    EmployeeModalComponent
   ],
     imports: [
         BrowserModule,
@@ -30,6 +32,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
         HttpClientModule,
         AppRoutingModule
     ],
+  entryComponents: [ EmployeeModalComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
