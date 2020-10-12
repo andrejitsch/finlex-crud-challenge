@@ -14,7 +14,7 @@
       <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.employee_age}}</td>
       <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.employee_salary}}</td>
       <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-        <button mdbBtn color="danger" size="sm" mdbWavesEffect type="button" class="m-0">
+        <button mdbBtn color="danger" size="sm" mdbWavesEffect type="button" class="m-0" (click)="deleteData(el.id)">
           Delete
         </button>
       </td>

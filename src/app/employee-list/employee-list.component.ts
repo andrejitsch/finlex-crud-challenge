@@ -38,4 +38,11 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     this.cdRef.detectChanges();
   }
 
+  deleteData(employeeID) {
+    this.api.deleteData(employeeID).subscribe(response => {
+    }, error => {
+      console.log(error);
+    });
+  }
+
 }
