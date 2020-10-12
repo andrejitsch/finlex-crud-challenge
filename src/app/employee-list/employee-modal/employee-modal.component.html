@@ -2,12 +2,14 @@
 <button type="button" class="close pull-right" aria-label="Close" (click)="modalRf.hide()">
   <span aria-hidden="true">×</span>
 </button>
-<h4 class="modal-title w-100" id="employeeModalLabel">Modal title</h4>
+  <h4 class="modal-title w-100" id="employeeModalLabel">Create a new Employee</h4>
 </div>
 <div class="modal-body">
   ...
 </div>
 <div class="modal-footer">
-  <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="modalRf.hide()" mdbWavesEffect>Close</button>
-  <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save!</button>
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
+    <button type="button" mdbBtn color="light" rounded="true" class="waves-light" aria-label="Close" (click)="employeeModal.hide()" mdbWavesEffect>Cancel</button>
+    <button type="button" mdbBtn color="dark" rounded="true" class="relative waves-light" mdbWavesEffect>ADD</button>
+  </div>
 </div>

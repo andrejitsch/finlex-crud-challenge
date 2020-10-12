@@ -1,6 +1,7 @@
 <div fxLayout="column" fxLayoutGap="10px">
   <div fxLayout="row" fxLayoutAlign="end center">
-    <button type="button" rounded="true" mdbBtn color="dark" class="relative waves-light" mdbWavesEffect>Create Employee</button>
+    <button type="button" rounded="true" mdbBtn (click)="openModal()"
+            color="dark" class="relative waves-light" mdbWavesEffect>Create Employee</button>
   </div>
   <table mdbTable #tableEl="mdbTable" class="z-depth-1">
     <thead>
