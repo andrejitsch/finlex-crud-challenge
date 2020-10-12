@@ -59,9 +59,13 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   }
 
 
+
+
   openModal(employee?) {
     this.modalRf = this.modalService.show(EmployeeModalComponent, {
-      data: employee
+      data: {
+        employee,
+      }
     });
   }
 
