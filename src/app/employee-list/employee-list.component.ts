@@ -40,9 +40,18 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
 
   deleteData(employeeID) {
     this.api.deleteData(employeeID).subscribe(response => {
+      this.deleteEntryFromList(employeeID);
+      console.log(this.mdbTable);
+      console.log(this.employeeList);
     }, error => {
       console.log(error);
     });
   }
+
+  deleteEntryFromList(employeeID) {
+    const findingRow = this.employeeList.findIndex(obj => obj.id === employeeID);
+    this.mdbTable.removeRow(findingRow);
+  }
+
 
 }
