@@ -7,17 +7,21 @@ import { AppComponent } from './app.component';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './navbar/navbar.component';
+import {FlexModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MDBBootstrapModule.forRoot(),
-    FormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MDBBootstrapModule.forRoot(),
+        FormsModule,
+        FlexModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
