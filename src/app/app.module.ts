@@ -12,6 +12,7 @@ import {FlexModule} from '@angular/flex-layout';
 import { FooterComponent } from './footer/footer.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import {AppRoutingModule} from './app-routing.module';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {AppRoutingModule} from './app-routing.module';
         MDBBootstrapModule.forRoot(),
         FormsModule,
         FlexModule,
+        HttpClientModule,
         AppRoutingModule
     ],
   providers: [],
