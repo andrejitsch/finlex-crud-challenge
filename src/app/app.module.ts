@@ -10,12 +10,14 @@ import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import {FlexModule} from '@angular/flex-layout';
 import { FooterComponent } from './footer/footer.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    EmployeeListComponent
   ],
     imports: [
         BrowserModule,
