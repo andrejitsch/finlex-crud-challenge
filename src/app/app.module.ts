@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {FlexModule} from '@angular/flex-layout';
 import { FooterComponent } from './footer/footer.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
         MDBBootstrapModule.forRoot(),
         FormsModule,
         FlexModule,
+        AppRoutingModule
     ],
   providers: [],
   bootstrap: [AppComponent]
