@@ -12,7 +12,7 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
   employeeList: any = [];
   previous: any = [];
-  headElements = ['ID', 'First', 'Last', 'Handle'];
+  headElements = ['ID', 'Name', 'Age', 'Salary'];
 
   constructor(private api: ApiService, private cdRef: ChangeDetectorRef) { }
 

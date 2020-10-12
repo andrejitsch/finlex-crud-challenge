@@ -1,4 +1,4 @@
-<div class="container">
+
   <table mdbTable #tableEl="mdbTable" class="z-depth-1">
     <thead>
     <tr>
@@ -13,14 +13,19 @@
       <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.employee_name}}</td>
       <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.employee_age}}</td>
       <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.employee_salary}}</td>
+      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
+        <button mdbBtn color="danger" size="sm" mdbWavesEffect type="button" class="m-0">
+          Delete
+        </button>
+      </td>
     </tr>
     </tbody>
     <tfoot class="grey lighten-5 w-100">
     <tr>
-      <td colspan="4">
+      <td colspan="5">
         <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="headElements"></mdb-table-pagination>
       </td>
     </tr>
     </tfoot>
   </table>
-</div>
+
