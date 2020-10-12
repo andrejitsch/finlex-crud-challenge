@@ -10,12 +10,16 @@ import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import {FlexModule} from '@angular/flex-layout';
 import { FooterComponent } from './footer/footer.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import {AppRoutingModule} from './app-routing.module';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    EmployeeListComponent
   ],
     imports: [
         BrowserModule,
@@ -23,6 +27,8 @@ import { FooterComponent } from './footer/footer.component';
         MDBBootstrapModule.forRoot(),
         FormsModule,
         FlexModule,
+        HttpClientModule,
+        AppRoutingModule
     ],
   providers: [],
   bootstrap: [AppComponent]
