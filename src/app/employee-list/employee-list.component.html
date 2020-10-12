@@ -1,4 +1,7 @@
-
+<div fxLayout="column" fxLayoutGap="10px">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <button type="button" rounded="true" mdbBtn color="dark" class="relative waves-light" (click)="employeeModal.show()" mdbWavesEffect>Create Employee</button>
+  </div>
   <table mdbTable #tableEl="mdbTable" class="z-depth-1">
     <thead>
     <tr>
@@ -28,4 +31,26 @@
     </tr>
     </tfoot>
   </table>
+</div>
 
+<div mdbModal #employeeModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="employeeModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="employeeModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="employeeModalLabel">Create a new Employee</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
+          <button type="button" mdbBtn color="light" rounded="true" class="waves-light" aria-label="Close" (click)="employeeModal.hide()" mdbWavesEffect>Cancel</button>
+          <button type="button" mdbBtn color="dark" rounded="true" class="relative waves-light" mdbWavesEffect>ADD</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
