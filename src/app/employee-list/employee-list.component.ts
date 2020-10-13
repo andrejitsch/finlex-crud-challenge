@@ -2,6 +2,7 @@ import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@a
 import {ApiService} from '../_service/api.service';
 import {MDBModalRef, MDBModalService, MdbTableDirective, MdbTablePaginationComponent} from 'angular-bootstrap-md';
 import {EmployeeModalComponent} from './employee-modal/employee-modal.component';
+import {Employee} from './employee';
 
 @Component({
   selector: 'app-employee-list',
@@ -11,7 +12,7 @@ import {EmployeeModalComponent} from './employee-modal/employee-modal.component'
 export class EmployeeListComponent implements OnInit, AfterViewInit {
   @ViewChild(MdbTablePaginationComponent, { static: true }) mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
-  employeeList: any = [];
+  employeeList: Employee[] = [];
   previous: any = [];
   headElements = ['ID', 'Name', 'Age', 'Salary'];
 
