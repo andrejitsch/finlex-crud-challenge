@@ -11,7 +11,7 @@ import {Subject} from 'rxjs';
   styleUrls: ['./employee-modal.component.scss']
 })
 export class EmployeeModalComponent implements OnInit {
-  employee: any;
+  employee: any = {};
   isNewEmployee = false;
   elForm: FormGroup;
   action: any = new Subject();
@@ -29,7 +29,6 @@ export class EmployeeModalComponent implements OnInit {
   getData(): void {
     if (this.employee === undefined) {
       this.isNewEmployee = true;
-      this.employee = {};
     } else {
       this.employee = Object.assign({}, this.employee);
     }
@@ -56,15 +55,19 @@ export class EmployeeModalComponent implements OnInit {
         employee_salary: this.employee.salary,
         employee_age: this.employee.age,
       };
-      this.action.next(employee);
+      this.action.next({
+        data: employee,
+        triggerMethod: 'add'
+      });
     }, error => console.log(error));
   }
 
   saveEmployee() {
+    console.log(this.employee);
     Object.assign(this.employee, this.elForm.value);
-    console.log(this.employee.id);
     this.api.updateEmployee(this.employee.id, this.employee).subscribe(data => {
-      this.action.next(this.employee);
+      console.log(this.employee);
+      //this.action.next(this.employee);
     }, error => console.log(error));
   }
 }

@@ -69,17 +69,25 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     });
 
     this.modalRf.content.action.subscribe((result: any) => {
-      console.log(result);
-      if (this.employeeList.find(obj => obj.id === result.id)) {
-        this.employeeList[result.id].employee_name = result.employee_name;
-        this.employeeList[result.id].employee_age = result.employee_age;
-        this.employeeList[result.id].employee_salary = result.employee_salary;
-      } else {
-        // tslint:disable-next-line:no-shadowed-variable
-        this.employeeList.push(result);
+      if (result) {
+        switch (result.triggerdMethod) {
+          case 'add':
+            this.employeeList.unshift(result.data);
+            break;
+
+          case 'edit':
+            this.editEntryInList(result.data);
+        }
+        this.mdbTable.setDataSource(this.employeeList);
       }
-      this.mdbTable.setDataSource(this.employeeList);
-      console.log(this.employeeList);
+    });
+  }
+
+  editEntryInList(emloyee) {
+    this.employeeList.forEach((item, index ) => {
+      if (item.id === emloyee.id) {
+        this.employeeList[index] = emloyee;
+      }
     });
   }
 
