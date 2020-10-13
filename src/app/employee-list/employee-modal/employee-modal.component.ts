@@ -34,7 +34,7 @@ export class EmployeeModalComponent implements OnInit {
       console.log(this.employee);
       this.isNewEmployee = true;
     } else {
-      this.employee = Object.assign({}, this.employee);
+      this.employee = Object.assign({}, this.data);
     }
   }
 
