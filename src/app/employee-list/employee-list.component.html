@@ -1,4 +1,8 @@
-
+<div fxLayout="column" fxLayoutGap="10px">
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <button type="button" rounded="true" mdbBtn (click)="openModal()"
+            color="dark" class="relative waves-light" mdbWavesEffect>Create Employee</button>
+  </div>
   <table mdbTable #tableEl="mdbTable" class="z-depth-1">
     <thead>
     <tr>
@@ -8,7 +12,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let el of employeeList; let i = index">
-      <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+      <th (click)="openModal(el)" *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
           scope="row">{{el.id}}</th>
       <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.employee_name}}</td>
       <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.employee_age}}</td>
@@ -28,4 +32,4 @@
     </tr>
     </tfoot>
   </table>
-
+</div>
