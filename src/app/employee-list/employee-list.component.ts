@@ -28,7 +28,13 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
 
   getData(): void {
     this.api.getAllData().subscribe(data => {
-      this.employeeList = data.data;
+      this.employeeList = data.data.map((prop, index) => ({
+        id: index,
+        name: prop.employee_name,
+        age: prop.employee_age,
+        salary: prop.employee_salary
+      }));
+      console.log(this.employeeList);
       this.mdbTable.setDataSource(this.employeeList);
       this.employeeList = this.mdbTable.getDataSource();
       this.previous = this.mdbTable.getDataSource();
