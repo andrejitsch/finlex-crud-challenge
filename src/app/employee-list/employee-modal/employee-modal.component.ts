@@ -24,6 +24,7 @@ export class EmployeeModalComponent implements OnInit {
   getData(): void {
     if (this.employee === undefined) {
       this.isNewEmployee = true;
+      this.employee = {};
     } else {
       this.employee = Object.assign({}, this.employee);
     }
@@ -31,9 +32,9 @@ export class EmployeeModalComponent implements OnInit {
 
   private createEmployeeForm() {
     this.elForm = this._formBuilder.group({
-      name: new FormControl({ value: this.employee.employee_name }),
-      age: new FormControl({ value: this.employee.employee_age}),
-      salary: new FormControl({ value: this.employee.employee_salary })
+      name: new FormControl({ value: this.employee.employee_name, disabled: false }),
+      age: new FormControl({ value: this.employee.employee_age, disabled: false }),
+      salary: new FormControl({ value: this.employee.employee_salary, disabled: false })
     });
   }
 

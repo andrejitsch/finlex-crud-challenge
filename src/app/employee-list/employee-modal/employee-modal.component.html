@@ -5,7 +5,11 @@
   <h4 class="modal-title w-100" id="employeeModalLabel">Create a new Employee</h4>
 </div>
 <div class="modal-body">
-  ...
+  <form [formGroup]="elForm" fxLayout="column" fxLayoutAlign="space-around stretch">
+    <input mdbInput formControlName="name" type="text">
+    <input mdbInput formControlName="age" type="number">
+    <input mdbInput formControlName="salary" type="number">
+  </form>
 </div>
 <div class="modal-footer">
   <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
