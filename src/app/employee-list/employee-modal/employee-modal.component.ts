@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {ApiService} from '../../_service/api.service';
 import {error} from '@angular/compiler/src/util';
 import {Subject} from 'rxjs';
+import {Employee} from '../employee';
 
 @Component({
   selector: 'app-employee-modal',
@@ -11,7 +12,8 @@ import {Subject} from 'rxjs';
   styleUrls: ['./employee-modal.component.scss']
 })
 export class EmployeeModalComponent implements OnInit {
-  employee: any = {};
+  employee: Employee = {};
+  data: any = {};
   isNewEmployee = false;
   elForm: FormGroup;
   action: any = new Subject();
@@ -22,12 +24,14 @@ export class EmployeeModalComponent implements OnInit {
               private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    console.log(this.data);
     this.getData();
     this.createEmployeeForm();
   }
 
   getData(): void {
     if (this.employee === undefined) {
+      console.log(this.employee);
       this.isNewEmployee = true;
     } else {
       this.employee = Object.assign({}, this.employee);
@@ -36,9 +40,9 @@ export class EmployeeModalComponent implements OnInit {
 
   private createEmployeeForm() {
     this.elForm = this._formBuilder.group({
-      name: new FormControl({ value: this.employee.employee_name, disabled: false }),
-      age: new FormControl({ value: this.employee.employee_age, disabled: false }),
-      salary: new FormControl({ value: this.employee.employee_salary, disabled: false })
+      name: new FormControl({ value: this.employee.name, disabled: false }),
+      age: new FormControl({ value: this.employee.age, disabled: false }),
+      salary: new FormControl({ value: this.employee.salary, disabled: false })
     });
   }
 
