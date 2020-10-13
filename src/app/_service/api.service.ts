@@ -14,7 +14,8 @@ export class ApiService {
   }
 
   addData(object): Observable<any> {
-    return this.http.post<any[]>('http://dummy.restapiexample.com/api/v1/create', object);
+    // @ts-ignore
+    return this.http.post<any[]>('http://dummy.restapiexample.com/api/v1/create?' + object);
   }
 
   deleteData(objectID): Observable<any> {

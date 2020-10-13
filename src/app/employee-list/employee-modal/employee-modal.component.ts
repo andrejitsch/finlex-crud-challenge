@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {MDBModalRef} from 'angular-bootstrap-md';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {ApiService} from '../../_service/api.service';
+import {error} from '@angular/compiler/src/util';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-employee-modal',
@@ -11,8 +14,10 @@ export class EmployeeModalComponent implements OnInit {
   employee: any;
   isNewEmployee = false;
   elForm: FormGroup;
+  action: any = new Subject();
 
   constructor(public modalRf: MDBModalRef,
+              private api: ApiService,
               // tslint:disable-next-line:variable-name
               private _formBuilder: FormBuilder) { }
 
@@ -36,6 +41,24 @@ export class EmployeeModalComponent implements OnInit {
       age: new FormControl({ value: this.employee.employee_age, disabled: false }),
       salary: new FormControl({ value: this.employee.employee_salary, disabled: false })
     });
+  }
+
+  addEmployee() {
+    Object.assign(this.employee, this.elForm.value);
+    // Add employee api service call
+    this.api.addData(this.employee).subscribe(data => {// success message
+      // Clear form fields once the employee added successfully
+      // tslint:disable-next-line:no-shadowed-variable
+      console.log(data.data);
+      const employee = {
+        id: '' + data.data.id,
+        employee_name: this.employee.name,
+        employee_salary: this.employee.salary,
+        employee_age: this.employee.age,
+      };
+      this.action.next(employee);
+      console.log('working but why not as a object');
+    }, error => console.log(error));
   }
 
 }

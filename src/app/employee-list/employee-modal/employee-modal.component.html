@@ -7,13 +7,13 @@
 <div class="modal-body">
   <form [formGroup]="elForm" fxLayout="column" fxLayoutAlign="space-around stretch">
     <input mdbInput formControlName="name" type="text">
-    <input mdbInput formControlName="age" type="number">
-    <input mdbInput formControlName="salary" type="number">
+    <input mdbInput formControlName="salary" type="text">
+    <input mdbInput formControlName="age" type="text">
   </form>
 </div>
 <div class="modal-footer">
   <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
     <button type="button" mdbBtn color="light" rounded="true" class="waves-light" aria-label="Close" (click)="employeeModal.hide()" mdbWavesEffect>Cancel</button>
-    <button type="button" mdbBtn color="dark" rounded="true" class="relative waves-light" mdbWavesEffect>ADD</button>
+    <button type="button" mdbBtn color="dark" rounded="true" class="relative waves-light" mdbWavesEffect (click)="addEmployee()">ADD</button>
   </div>
 </div>
