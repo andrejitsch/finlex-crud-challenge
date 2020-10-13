@@ -70,8 +70,14 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
 
     this.modalRf.content.action.subscribe((result: any) => {
       console.log(result);
-      // tslint:disable-next-line:no-shadowed-variable
-      this.employeeList.push(result);
+      if (this.employeeList.find(obj => obj.id === result.id)) {
+        this.employeeList[result.id].employee_name = result.employee_name;
+        this.employeeList[result.id].employee_age = result.employee_age;
+        this.employeeList[result.id].employee_salary = result.employee_salary;
+      } else {
+        // tslint:disable-next-line:no-shadowed-variable
+        this.employeeList.push(result);
+      }
       this.mdbTable.setDataSource(this.employeeList);
       console.log(this.employeeList);
     });
