@@ -14,6 +14,7 @@
 <div class="modal-footer">
   <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
     <button type="button" mdbBtn color="light" rounded="true" class="waves-light" aria-label="Close" (click)="employeeModal.hide()" mdbWavesEffect>Cancel</button>
-    <button type="button" mdbBtn color="dark" rounded="true" class="relative waves-light" mdbWavesEffect (click)="addEmployee()">ADD</button>
+    <button *ngIf="isNewEmployee" type="button" mdbBtn color="dark" rounded="true" class="relative waves-light" mdbWavesEffect (click)="addEmployee()">ADD</button>
+    <button *ngIf="!isNewEmployee" type="button" mdbBtn color="dark" rounded="true" class="relative waves-light" mdbWavesEffect (click)="saveEmployee()">Save</button>
   </div>
 </div>

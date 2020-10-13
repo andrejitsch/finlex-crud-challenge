@@ -23,6 +23,7 @@ export class ApiService {
   }
 
   updateEmployee(objectID, object): Observable<any> {
-    return this.http.put<any[]>('http://dummy.restapiexample.com/api/v1/update/' + objectID, object);
+    // @ts-ignore
+    return this.http.put<any[]>('http://dummy.restapiexample.com/api/v1/update/' + objectID.toString()+'?' + object);
   }
 }

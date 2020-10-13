@@ -57,8 +57,14 @@ export class EmployeeModalComponent implements OnInit {
         employee_age: this.employee.age,
       };
       this.action.next(employee);
-      console.log('working but why not as a object');
     }, error => console.log(error));
   }
 
+  saveEmployee() {
+    Object.assign(this.employee, this.elForm.value);
+    console.log(this.employee.id);
+    this.api.updateEmployee(this.employee.id, this.employee).subscribe(data => {
+      this.action.next();
+    }, error => console.log(error));
+  }
 }
