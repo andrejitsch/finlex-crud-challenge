@@ -17,6 +17,7 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   previous: any = [];
   headElements = ['ID', 'Name', 'Age', 'Salary'];
 
+  confirm = false;
   modalRf: MDBModalRef;
 
   constructor(private api: ApiService,
@@ -49,9 +50,9 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     this.cdRef.detectChanges();
   }
 
-  deleteData(employeeID) {
+  deleteData(employee) {
     this.modalRf = this.modalService.show(ConfirmationModalComponent, {
-
+      data: {data: employee}
     });
     /**
     this.api.deleteData(employeeID).subscribe(response => {
