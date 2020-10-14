@@ -14,6 +14,7 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { EmployeeModalComponent } from './employee-list/employee-modal/employee-modal.component';
+import { ConfirmationModalComponent } from './shared/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { EmployeeModalComponent } from './employee-list/employee-modal/employee-
     NavbarComponent,
     FooterComponent,
     EmployeeListComponent,
-    EmployeeModalComponent
+    EmployeeModalComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     BrowserModule,
