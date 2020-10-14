@@ -29,8 +29,7 @@ export class EmployeeModalComponent implements OnInit {
   }
 
   getData(): void {
-    if (this.employee === undefined) {
-      console.log(this.employee);
+    if (this.data === undefined) {
       this.isNewEmployee = true;
     } else {
       this.employee = Object.assign({}, this.data);
@@ -50,27 +49,17 @@ export class EmployeeModalComponent implements OnInit {
     // Add employee api service call
     this.api.addData(this.employee).subscribe(data => {// success message
       // Clear form fields once the employee added successfully
-      // tslint:disable-next-line:no-shadowed-variable
-      console.log(data.data);
-      const employee = {
-        id: '' + data.data.id,
-        employee_name: this.employee.name,
-        employee_salary: this.employee.salary,
-        employee_age: this.employee.age,
-      };
       this.action.next({
-        data: employee,
+        data: this.employee,
         triggerMethod: 'add'
       });
     }, error => console.log(error));
   }
 
   saveEmployee() {
-    console.log(this.employee);
     Object.assign(this.employee, this.elForm.value);
     this.api.updateEmployee(this.employee.id, this.employee).subscribe(data => {
-      console.log(this.employee);
-      // this.action.next(this.employee);
+        this.action.next(this.employee);
     }, error => console.log(error));
   }
 }
