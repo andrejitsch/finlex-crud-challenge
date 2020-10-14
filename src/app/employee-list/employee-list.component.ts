@@ -17,7 +17,6 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   previous: any = [];
   headElements = ['ID', 'Name', 'Age', 'Salary'];
 
-  confirm = false;
   modalRf: MDBModalRef;
 
   constructor(private api: ApiService,
@@ -31,11 +30,12 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   getData(): void {
     this.api.getAllData().subscribe(data => {
       this.employeeList = data.data.map((prop, index) => ({
-        id: index,
+        id: prop.id,
         name: prop.employee_name,
         age: prop.employee_age,
         salary: prop.employee_salary
       }));
+      console.log(this.employeeList);
       this.mdbTable.setDataSource(this.employeeList);
       this.employeeList = this.mdbTable.getDataSource();
       this.previous = this.mdbTable.getDataSource();
@@ -54,13 +54,17 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     this.modalRf = this.modalService.show(ConfirmationModalComponent, {
       data: {data: employee}
     });
-    /**
-    this.api.deleteData(employeeID).subscribe(response => {
-      this.deleteEntryFromList(employeeID);
-    }, error => {
-      console.log(error);
+
+    this.modalRf.content.action.subscribe((result: any) => {
+      if (result.data) {
+        console.log(employee.id);
+        this.api.deleteData(employee.id).subscribe(response => {
+          this.deleteEntryFromList(employee.id);
+        }, error => {
+          console.log(error);
+        });
+      }
     });
-     **/
   }
 
   deleteEntryFromList(employeeID) {

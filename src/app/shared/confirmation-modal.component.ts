@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Employee} from '../employee-list/employee';
 import {MDBModalRef} from 'angular-bootstrap-md';
+import {Subject} from 'rxjs';
 
 @Component({
   template: `
@@ -14,8 +15,8 @@ import {MDBModalRef} from 'angular-bootstrap-md';
           <p>Delete {{this.data.name}}?</p>
         </div>
         <div class="modal-footer" fxLayoutAlign="center center">
-          <button mdbBtn color="danger" outline="true" rounded="true">No</button>
-          <button mdbBtn color="danger" rounded="true">Yes</button>
+          <button mdbBtn color="danger" outline="true" rounded="true" (click)="modalRf.hide()">No</button>
+          <button mdbBtn color="danger" rounded="true" (click)="confirm()">Yes</button>
         </div>
       </div>
     </div>
@@ -24,7 +25,9 @@ import {MDBModalRef} from 'angular-bootstrap-md';
 })
 export class ConfirmationModalComponent implements OnInit {
 
+  action: any = new Subject();
   data: any = {};
+  yes = false;
 
   constructor(public modalRf: MDBModalRef) { }
 
@@ -32,4 +35,11 @@ export class ConfirmationModalComponent implements OnInit {
     console.log(this.data);
   }
 
+  confirm() {
+    this.yes = true;
+    this.action.next({
+      data: this.yes,
+    });
+    this.modalRf.hide();
+  }
 }
