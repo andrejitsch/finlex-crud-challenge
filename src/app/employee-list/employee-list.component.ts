@@ -3,6 +3,7 @@ import {ApiService} from '../_service/api.service';
 import {MDBModalRef, MDBModalService, MdbTableDirective, MdbTablePaginationComponent} from 'angular-bootstrap-md';
 import {EmployeeModalComponent} from './employee-modal/employee-modal.component';
 import {Employee} from './employee';
+import {ConfirmationModalComponent} from '../shared/confirmation-modal.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -49,13 +50,16 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   }
 
   deleteData(employeeID) {
+    this.modalRf = this.modalService.show(ConfirmationModalComponent, {
+
+    });
+    /**
     this.api.deleteData(employeeID).subscribe(response => {
       this.deleteEntryFromList(employeeID);
-      console.log(this.mdbTable);
-      console.log(this.employeeList);
     }, error => {
       console.log(error);
     });
+     **/
   }
 
   deleteEntryFromList(employeeID) {

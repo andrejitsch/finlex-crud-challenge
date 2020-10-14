@@ -35,7 +35,7 @@ import { ConfirmationModalComponent } from './shared/confirmation-modal.componen
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  entryComponents: [ EmployeeModalComponent],
+  entryComponents: [ EmployeeModalComponent, ConfirmationModalComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
