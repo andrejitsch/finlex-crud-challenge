@@ -2,7 +2,8 @@
 <button type="button" class="close pull-right" aria-label="Close" (click)="modalRf.hide()">
   <span aria-hidden="true">×</span>
 </button>
-  <h4 class="modal-title w-100" id="employeeModalLabel">Create a new Employee</h4>
+  <h4 *ngIf="isNewEmployee" class="modal-title w-100" id="employeeModalLabelNew">Create a new Employee</h4>
+  <h4 *ngIf="!isNewEmployee" class="modal-title w-100" id="employeeModalLabel">Employee: {{this.employee.name}}</h4>
 </div>
 <div class="modal-body">
   <form [formGroup]="elForm" fxLayout="column" fxLayoutAlign="space-around stretch">
