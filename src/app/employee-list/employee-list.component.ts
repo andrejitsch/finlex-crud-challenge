@@ -34,11 +34,9 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
         age: prop.employee_age,
         salary: prop.employee_salary
       }));
-      console.log(this.employeeList);
       this.mdbTable.setDataSource(this.employeeList);
       this.employeeList = this.mdbTable.getDataSource();
       this.previous = this.mdbTable.getDataSource();
-      console.log(this.employeeList);
     });
   }
 
@@ -74,14 +72,13 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     });
 
     this.modalRf.content.action.subscribe((result: any) => {
+      console.log(result);
       if (result) {
-        switch (result.triggerdMethod) {
-          case 'add':
-            this.employeeList.unshift(result.data);
-            break;
-
-          case 'edit':
-            this.editEntryInList(result.data);
+        if (result.triggerdMethod === 'add') {
+          this.employeeList.unshift(result.data);
+        } else {
+          console.log('Edit is triggering');
+          this.editEntryInList(result.data);
         }
         this.mdbTable.setDataSource(this.employeeList);
       }
@@ -92,7 +89,9 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     this.employeeList.forEach((item, index ) => {
       if (item.id === emloyee.id) {
         this.employeeList[index] = emloyee;
+        console.log(this.employeeList[index]);
       }
+      this.mdbTable.setDataSource(this.employeeList);
     });
   }
 

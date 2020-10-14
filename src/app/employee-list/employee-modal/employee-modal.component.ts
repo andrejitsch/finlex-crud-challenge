@@ -59,7 +59,10 @@ export class EmployeeModalComponent implements OnInit {
   saveEmployee() {
     Object.assign(this.employee, this.elForm.value);
     this.api.updateEmployee(this.employee.id, this.employee).subscribe(data => {
-        this.action.next(this.employee);
+      this.action.next({
+          data: this.employee,
+          triggerMethod: 'edit'
+        });
     }, error => console.log(error));
   }
 }
