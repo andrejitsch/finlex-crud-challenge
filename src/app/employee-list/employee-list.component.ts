@@ -2,6 +2,7 @@ import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@a
 import {ApiService} from '../_service/api.service';
 import {MDBModalRef, MDBModalService, MdbTableDirective, MdbTablePaginationComponent} from 'angular-bootstrap-md';
 import {EmployeeModalComponent} from './employee-modal/employee-modal.component';
+import {Employee} from './employee';
 
 @Component({
   selector: 'app-employee-list',
@@ -11,7 +12,7 @@ import {EmployeeModalComponent} from './employee-modal/employee-modal.component'
 export class EmployeeListComponent implements OnInit, AfterViewInit {
   @ViewChild(MdbTablePaginationComponent, { static: true }) mdbTablePagination: MdbTablePaginationComponent;
   @ViewChild(MdbTableDirective, { static: true }) mdbTable: MdbTableDirective;
-  employeeList: any = [];
+  employeeList: Employee[] = [];
   previous: any = [];
   headElements = ['ID', 'Name', 'Age', 'Salary'];
 
@@ -27,11 +28,15 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
 
   getData(): void {
     this.api.getAllData().subscribe(data => {
-      this.employeeList = data.data;
+      this.employeeList = data.data.map((prop, index) => ({
+        id: index,
+        name: prop.employee_name,
+        age: prop.employee_age,
+        salary: prop.employee_salary
+      }));
       this.mdbTable.setDataSource(this.employeeList);
       this.employeeList = this.mdbTable.getDataSource();
       this.previous = this.mdbTable.getDataSource();
-      console.log(this.employeeList);
     });
   }
 
@@ -63,20 +68,17 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
 
   openModal(employee?) {
     this.modalRf = this.modalService.show(EmployeeModalComponent, {
-      data: {
-        employee,
-      }
+      data: {data: employee}
     });
 
     this.modalRf.content.action.subscribe((result: any) => {
+      console.log(result);
       if (result) {
-        switch (result.triggerdMethod) {
-          case 'add':
-            this.employeeList.unshift(result.data);
-            break;
-
-          case 'edit':
-            this.editEntryInList(result.data);
+        if (result.triggerdMethod === 'add') {
+          this.employeeList.unshift(result.data);
+        } else {
+          console.log('Edit is triggering');
+          this.editEntryInList(result.data);
         }
         this.mdbTable.setDataSource(this.employeeList);
       }
@@ -87,7 +89,9 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     this.employeeList.forEach((item, index ) => {
       if (item.id === emloyee.id) {
         this.employeeList[index] = emloyee;
+        console.log(this.employeeList[index]);
       }
+      this.mdbTable.setDataSource(this.employeeList);
     });
   }
 

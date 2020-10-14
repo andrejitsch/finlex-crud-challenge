@@ -131,10 +131,10 @@
     },
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
+    "no-shadowed-variable": false,
     "variable-name": {
       "options": [
         "ban-keywords",
-        "check-format",
         "allow-pascal-case"
       ]
     },
