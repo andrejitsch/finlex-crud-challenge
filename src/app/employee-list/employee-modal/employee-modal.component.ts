@@ -20,7 +20,6 @@ export class EmployeeModalComponent implements OnInit {
 
   constructor(public modalRf: MDBModalRef,
               private api: ApiService,
-              // tslint:disable-next-line:variable-name
               private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -71,7 +70,7 @@ export class EmployeeModalComponent implements OnInit {
     Object.assign(this.employee, this.elForm.value);
     this.api.updateEmployee(this.employee.id, this.employee).subscribe(data => {
       console.log(this.employee);
-      //this.action.next(this.employee);
+      // this.action.next(this.employee);
     }, error => console.log(error));
   }
 }
