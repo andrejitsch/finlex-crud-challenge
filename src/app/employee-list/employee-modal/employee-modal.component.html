@@ -19,13 +19,13 @@
       <mdb-success *ngIf="elForm.get('name').valid && (elForm.dirty || elForm.touched)">Nice name!</mdb-success>
     </div>
     <div class="md-form mb-5">
-      <input type="text" id="age" class="form-control" mdbValidate mdbInput formControlName="age" required/>
+      <input type="number" id="age" class="form-control" mdbValidate mdbInput formControlName="age" required/>
       <label for="age">Enter your age</label>
       <mdb-error *ngIf="elForm.get('age').invalid && (elForm.dirty || elForm.touched)">Required field!</mdb-error>
       <mdb-success *ngIf="elForm.get('age').valid && (elForm.dirty || elForm.touched)">Nice age!</mdb-success>
     </div>
     <div class="md-form mb-5">
-      <input type="text" id="salary" class="form-control" mdbValidate mdbInput formControlName="salary" required/>
+      <input type="number" id="salary" class="form-control" mdbValidate mdbInput formControlName="salary" required/>
       <label for="salary">Enter your salary</label>
       <mdb-error *ngIf="elForm.get('salary').invalid && (elForm.dirty || elForm.touched)">Required field!</mdb-error>
       <mdb-success *ngIf="elForm.get('salary').valid && (elForm.dirty || elForm.touched)">Nice Salary!</mdb-success>
@@ -38,7 +38,7 @@
     <div></div>
     <button *ngIf="isNewEmployee" type="submit" mdbBtn color="dark" size="md" rounded="true" class="relative waves-light"
             mdbWavesEffect (click)="addEmployee()" [disabled]="elForm.invalid">Create</button>
-    <button *ngIf="!isNewEmployee" type="button" mdbBtn color="dark" size="md" rounded="true" class="relative waves-light"
+    <button *ngIf="!isNewEmployee" type="submit" mdbBtn color="dark" size="md" rounded="true" class="relative waves-light"
             mdbWavesEffect (click)="saveEmployee()" [disabled]="elForm.invalid">Save</button>
   </div>
 </div>

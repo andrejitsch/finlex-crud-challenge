@@ -3,6 +3,7 @@ import {ApiService} from '../_service/api.service';
 import {MDBModalRef, MDBModalService, MdbTableDirective, MdbTablePaginationComponent} from 'angular-bootstrap-md';
 import {EmployeeModalComponent} from './employee-modal/employee-modal.component';
 import {Employee} from './employee';
+import {ConfirmationModalComponent} from '../shared/confirmation-modal.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -29,11 +30,12 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   getData(): void {
     this.api.getAllData().subscribe(data => {
       this.employeeList = data.data.map((prop, index) => ({
-        id: index,
+        id: prop.id,
         name: prop.employee_name,
         age: prop.employee_age,
         salary: prop.employee_salary
       }));
+      console.log(this.employeeList);
       this.mdbTable.setDataSource(this.employeeList);
       this.employeeList = this.mdbTable.getDataSource();
       this.previous = this.mdbTable.getDataSource();
@@ -48,13 +50,20 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     this.cdRef.detectChanges();
   }
 
-  deleteData(employeeID) {
-    this.api.deleteData(employeeID).subscribe(response => {
-      this.deleteEntryFromList(employeeID);
-      console.log(this.mdbTable);
-      console.log(this.employeeList);
-    }, error => {
-      console.log(error);
+  deleteData(employee) {
+    this.modalRf = this.modalService.show(ConfirmationModalComponent, {
+      data: {data: employee}
+    });
+
+    this.modalRf.content.action.subscribe((result: any) => {
+      if (result.data) {
+        console.log(employee.id);
+        this.api.deleteData(employee.id).subscribe(response => {
+          this.deleteEntryFromList(employee.id);
+        }, error => {
+          console.log(error);
+        });
+      }
     });
   }
 
@@ -75,7 +84,7 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
       console.log(result.triggerMethod);
       if (result) {
         if (result.triggerMethod === 'add') {
-          console.log();
+          console.log(result.data);
           this.employeeList.unshift(result.data);
         } else {
           console.log('Edit is triggering');

@@ -24,6 +24,6 @@ export class ApiService {
 
   updateEmployee(objectID, object): Observable<any> {
     // @ts-ignore
-    return this.http.put<any[]>('http://dummy.restapiexample.com/api/v1/update/' + objectID.toString()+'?' + object);
+    return this.http.put<any[]>('http://dummy.restapiexample.com/api/v1/update/' + objectID.toString() + '?' + object);
   }
 }
