@@ -9,15 +9,15 @@
   <form [formGroup]="elForm" fxLayout="column" fxLayoutAlign="space-around stretch">
     <!-- Name -->
     <div class="md-form mb-5">
-      <input type="text" id="name" class="form-control" mdbInput formControlName="name"/>
+      <input type="text" id="name" class="form-control" mdbInput formControlName="name" required/>
       <label for="name">Enter your name</label>
     </div>
     <div class="md-form mb-5">
-      <input type="text" id="age" class="form-control" mdbInput formControlName="age"/>
+      <input type="text" id="age" class="form-control" mdbInput formControlName="age" required/>
       <label for="age">Enter your age</label>
     </div>
     <div class="md-form mb-5">
-      <input type="text" id="salary" class="form-control" mdbInput formControlName="salary"/>
+      <input type="text" id="salary" class="form-control" mdbInput formControlName="salary" required/>
       <label for="salary">Enter your salary</label>
     </div>
   </form>
@@ -25,7 +25,9 @@
 <div class="modal-footer">
   <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
     <button type="button" mdbBtn color="light" rounded="true" class="waves-light" aria-label="Close" mdbWavesEffect>Cancel</button>
-    <button *ngIf="isNewEmployee" type="button" mdbBtn color="dark" rounded="true" class="relative waves-light" mdbWavesEffect (click)="addEmployee()">ADD</button>
-    <button *ngIf="!isNewEmployee" type="button" mdbBtn color="dark" rounded="true" class="relative waves-light" mdbWavesEffect (click)="saveEmployee()">Save</button>
+    <button *ngIf="isNewEmployee" type="button" mdbBtn color="dark" rounded="true" class="relative waves-light"
+            mdbWavesEffect (click)="addEmployee()" [disabled]="elForm.invalid">ADD</button>
+    <button *ngIf="!isNewEmployee" type="button" mdbBtn color="dark" rounded="true" class="relative waves-light"
+            mdbWavesEffect (click)="saveEmployee()">Save</button>
   </div>
 </div>

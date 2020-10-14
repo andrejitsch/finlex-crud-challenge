@@ -72,9 +72,10 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     });
 
     this.modalRf.content.action.subscribe((result: any) => {
-      console.log(result);
+      console.log(result.triggerMethod);
       if (result) {
-        if (result.triggerdMethod === 'add') {
+        if (result.triggerMethod === 'add') {
+          console.log();
           this.employeeList.unshift(result.data);
         } else {
           console.log('Edit is triggering');
