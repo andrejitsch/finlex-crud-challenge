@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MDBModalRef} from 'angular-bootstrap-md';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApiService} from '../../_service/api.service';
 import {error} from '@angular/compiler/src/util';
 import {Subject} from 'rxjs';
@@ -38,9 +38,9 @@ export class EmployeeModalComponent implements OnInit {
 
   private createEmployeeForm() {
     this.elForm = this._formBuilder.group({
-      name: new FormControl({ value: this.employee.name, disabled: false }),
-      age: new FormControl({ value: this.employee.age, disabled: false }),
-      salary: new FormControl({ value: this.employee.salary, disabled: false })
+      name: new FormControl({ value: this.employee.name, disabled: false }, Validators.required),
+      age: new FormControl({ value: this.employee.age, disabled: false }, Validators.required),
+      salary: new FormControl({ value: this.employee.salary, disabled: false }, Validators.required)
     });
   }
 
