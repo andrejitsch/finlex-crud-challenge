@@ -6,9 +6,19 @@
 </div>
 <div class="modal-body">
   <form [formGroup]="elForm" fxLayout="column" fxLayoutAlign="space-around stretch">
-    <input mdbInput formControlName="name" type="text">
-    <input mdbInput formControlName="salary" type="text">
-    <input mdbInput formControlName="age" type="text">
+    <!-- Name -->
+    <div class="md-form mb-5">
+      <input type="text" id="name" class="form-control" mdbInput formControlName="name"/>
+      <label for="name">Enter your name</label>
+    </div>
+    <div class="md-form mb-5">
+      <input type="text" id="age" class="form-control" mdbInput formControlName="age"/>
+      <label for="age">Enter your age</label>
+    </div>
+    <div class="md-form mb-5">
+      <input type="text" id="salary" class="form-control" mdbInput formControlName="salary"/>
+      <label for="salary">Enter your salary</label>
+    </div>
   </form>
 </div>
 <div class="modal-footer">
