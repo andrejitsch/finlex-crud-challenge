@@ -49,6 +49,8 @@ export class EmployeeModalComponent implements OnInit {
     // Add employee api service call
     this.api.addData(this.employee).subscribe(data => {// success message
       // Clear form fields once the employee added successfully
+      console.log(data.data.id);
+      this.employee.id = data.data.id;
       this.action.next({
         data: this.employee,
         triggerMethod: 'add'

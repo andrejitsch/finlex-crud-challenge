@@ -75,7 +75,7 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
       console.log(result.triggerMethod);
       if (result) {
         if (result.triggerMethod === 'add') {
-          console.log();
+          console.log(result.data);
           this.employeeList.unshift(result.data);
         } else {
           console.log('Edit is triggering');
