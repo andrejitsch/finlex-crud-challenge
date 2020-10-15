@@ -1,9 +1,10 @@
 <div fxLayout="column" fxLayoutGap="10px">
   <div fxLayout="row" fxLayoutAlign="end center">
     <button type="button" rounded="true" mdbBtn (click)="openModal()"
-            color="dark" class="relative waves-light" mdbWavesEffect>Create Employee</button>
+            color="dark" class="relative waves-light" mdbWavesEffect>
+      <mdb-icon fas icon="user-plus" class="mr-1"></mdb-icon>Create</button>
   </div>
-  <table mdbTable #tableEl="mdbTable" class="z-depth-1">
+  <table mdbTable #tableEl="mdbTable" class="z-depth-1 w-auto">
     <thead>
     <tr>
       <th *ngFor="let head of headElements; let i = index" scope="col">{{head}}
@@ -12,15 +13,20 @@
     </thead>
     <tbody>
     <tr *ngFor="let employee of employeeList; let i = index">
-      <th (click)="openModal(employee)" *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+      <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
           scope="row">{{employee.id}}</th>
       <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{employee.name}}</td>
       <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{employee.age}}</td>
       <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{employee.salary}}</td>
       <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
-        <button mdbBtn color="danger" size="sm" mdbWavesEffect type="button" class="m-0" (click)="deleteData(employee)">
-          Delete
-        </button>
+        <div class="action-column" fxLayout="row" fxLayoutAlign="center center">
+          <button mdbBtn color="danger" size="sm" rounded="true" mdbWavesEffect type="button" class="m-0" (click)="deleteData(employee)">
+            <mdb-icon fas icon="trash" class="mr-1"></mdb-icon>Delete
+          </button>
+          <button mdbBtn color="dark" size="sm" rounded="true" mdbWavesEffect type="button" class="m-0" (click)="openModal(employee)">
+            <mdb-icon fas icon="edit" class="mr-1"></mdb-icon>Edit
+          </button>
+        </div>
       </td>
     </tr>
     </tbody>

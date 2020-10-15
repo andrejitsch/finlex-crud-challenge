@@ -1,0 +1,13 @@
+th {
+  max-height: 50px;
+}
+
+table.table td, table.table th {
+  vertical-align: middle;
+}
+
+.action-column {
+  button {
+    margin-right: 10px !important;
+  }
+}
