@@ -3,7 +3,7 @@
     <button type="button" rounded="true" mdbBtn (click)="openModal()"
             color="dark" class="relative waves-light" mdbWavesEffect>Create Employee</button>
   </div>
-  <table mdbTable #tableEl="mdbTable" class="z-depth-1">
+  <table mdbTable #tableEl="mdbTable" class="z-depth-1 w-auto">
     <thead>
     <tr>
       <th *ngFor="let head of headElements; let i = index" scope="col">{{head}}
@@ -26,8 +26,8 @@
     </tbody>
     <tfoot class="grey lighten-5 w-100">
     <tr>
-      <td colspan="5" class="paginator">
-        <mdb-table-pagination class="paginator" [tableEl]="tableEl" [searchDataSource]="headElements"></mdb-table-pagination>
+      <td colspan="5">
+        <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="headElements"></mdb-table-pagination>
       </td>
     </tr>
     </tfoot>
