@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit, Output} from '@angular/core';
+import {EventEmitter} from 'events';
+import {DataService} from '../_service/data.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  searchText = '';
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+  }
+
+  @HostListener('input') oninput() {
+    this.newMessage();
+  }
+
+  newMessage() {
+    this.dataService.changeMessage(this.searchText);
   }
 
 }

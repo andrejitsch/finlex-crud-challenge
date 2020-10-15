@@ -1,9 +1,11 @@
-import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, HostListener, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {ApiService} from '../_service/api.service';
 import {MDBModalRef, MDBModalService, MdbTableDirective, MdbTablePaginationComponent} from 'angular-bootstrap-md';
 import {EmployeeModalComponent} from './employee-modal/employee-modal.component';
 import {Employee} from './employee';
 import {ConfirmationModalComponent} from '../shared/confirmation-modal.component';
+import {NavbarComponent} from '../navbar/navbar.component';
+import {DataService} from '../_service/data.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -17,14 +19,23 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   previous: any = [];
   headElements = ['ID', 'Name', 'Age', 'Salary'];
 
+  textSearch = '';
   modalRf: MDBModalRef;
+
 
   constructor(private api: ApiService,
               private modalService: MDBModalService,
-              private cdRef: ChangeDetectorRef) { }
+              private cdRef: ChangeDetectorRef,
+              private dataService: DataService) { }
 
   ngOnInit(): void {
     this.getData();
+    this.dataService.currentText.subscribe(txt => {
+      this.textSearch = txt;
+      if (this.textSearch !== '') {
+        this.searchItems();
+      }
+    });
   }
 
   getData(): void {
@@ -106,4 +117,15 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   }
 
 
+  searchItems() {
+    const prev = this.mdbTable.getDataSource();
+    if (!this.textSearch) {
+      this.mdbTable.setDataSource(this.previous);
+      this.employeeList = this.mdbTable.getDataSource();
+    }
+    if (this.textSearch) {
+      this.employeeList = this.mdbTable.searchLocalDataBy(this.textSearch);
+      this.mdbTable.setDataSource(prev);
+    }
+  }
 }
