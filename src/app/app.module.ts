@@ -15,6 +15,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { EmployeeModalComponent } from './employee-list/employee-modal/employee-modal.component';
 import { ConfirmationModalComponent } from './shared/confirmation-modal.component';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,9 @@ import { ConfirmationModalComponent } from './shared/confirmation-modal.componen
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true
+    })
   ],
   entryComponents: [ EmployeeModalComponent, ConfirmationModalComponent],
   providers: [],

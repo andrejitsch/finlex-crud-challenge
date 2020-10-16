@@ -37,8 +37,8 @@
     <!-- Easy Placeholder -->
     <div></div>
     <button *ngIf="isNewEmployee" type="submit" mdbBtn color="dark" size="md" rounded="true" class="relative waves-light"
-            mdbWavesEffect (click)="addEmployee()" [disabled]="elForm.invalid">Create</button>
+            mdbWavesEffect (click)="addEmployee(); modalRf.hide();" [disabled]="elForm.invalid">Create</button>
     <button *ngIf="!isNewEmployee" type="submit" mdbBtn color="dark" size="md" rounded="true" class="relative waves-light"
-            mdbWavesEffect (click)="saveEmployee()" [disabled]="elForm.invalid">Save</button>
+            mdbWavesEffect (click)="saveEmployee(); modalRf.hide();" [disabled]="elForm.invalid">Save</button>
   </div>
 </div>
