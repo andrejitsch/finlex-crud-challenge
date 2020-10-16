@@ -5,6 +5,7 @@ import {ApiService} from '../../_service/api.service';
 import {error} from '@angular/compiler/src/util';
 import {Subject} from 'rxjs';
 import {Employee} from '../employee';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-employee-modal',
@@ -20,6 +21,7 @@ export class EmployeeModalComponent implements OnInit {
 
   constructor(public modalRf: MDBModalRef,
               private api: ApiService,
+              private toastr: ToastrService,
               private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -49,13 +51,15 @@ export class EmployeeModalComponent implements OnInit {
     // Add employee api service call
     this.api.addData(this.employee).subscribe(data => {// success message
       // Clear form fields once the employee added successfully
-      console.log(data.data.id);
       this.employee.id = data.data.id;
       this.action.next({
         data: this.employee,
         triggerMethod: 'add'
       });
-    }, error => console.log(error));
+      this.toastr.success(data.message);
+    }, error => {
+      this.toastr.error(error.message);
+    });
   }
 
   saveEmployee() {
@@ -65,6 +69,9 @@ export class EmployeeModalComponent implements OnInit {
           data: this.employee,
           triggerMethod: 'edit'
         });
-    }, error => console.log(error));
+      this.toastr.success(data.message);
+    }, error => {
+      this.toastr.error(error.message);
+    });
   }
 }

@@ -4,8 +4,8 @@ import {MDBModalRef, MDBModalService, MdbTableDirective, MdbTablePaginationCompo
 import {EmployeeModalComponent} from './employee-modal/employee-modal.component';
 import {Employee} from './employee';
 import {ConfirmationModalComponent} from '../shared/confirmation-modal.component';
-import {NavbarComponent} from '../navbar/navbar.component';
 import {DataService} from '../_service/data.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-employee-list',
@@ -26,6 +26,7 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   constructor(private api: ApiService,
               private modalService: MDBModalService,
               private cdRef: ChangeDetectorRef,
+              private toastr: ToastrService,
               private dataService: DataService) { }
 
   ngOnInit(): void {
@@ -71,8 +72,10 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
         console.log(employee.id);
         this.api.deleteData(employee.id).subscribe(response => {
           this.deleteEntryFromList(employee.id);
+          console.log(response);
+          this.toastr.success(response.message);
         }, error => {
-          console.log(error);
+          this.toastr.error(error.message);
         });
       }
     });
