@@ -33,7 +33,7 @@ import { ConfirmationModalComponent } from './shared/confirmation-modal.componen
     FlexModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   entryComponents: [ EmployeeModalComponent, ConfirmationModalComponent],
   providers: [],
