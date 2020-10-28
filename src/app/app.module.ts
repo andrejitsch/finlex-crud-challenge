@@ -16,6 +16,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { EmployeeModalComponent } from './employee-list/employee-modal/employee-modal.component';
 import { ConfirmationModalComponent } from './shared/confirmation-modal.component';
 import {ToastrModule} from 'ngx-toastr';
+import { EmployeeCardComponent } from './employee-list/employee-card/employee-card.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {ToastrModule} from 'ngx-toastr';
     FooterComponent,
     EmployeeListComponent,
     EmployeeModalComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    EmployeeCardComponent
   ],
   imports: [
     BrowserModule,
