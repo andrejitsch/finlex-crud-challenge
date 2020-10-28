@@ -13,7 +13,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let employee of employeeList; let i = index">
+      <tr style="cursor: pointer" *ngFor="let employee of employeeList; let i = index" [routerLink]="employee.id" >
         <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
             scope="row">{{employee.id}}</th>
         <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{employee.name}}</td>
@@ -21,10 +21,12 @@
         <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{employee.salary}}</td>
         <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">
           <div class="action-column" fxLayout="row" fxLayoutAlign="center center">
-            <button mdbBtn color="danger" size="sm" rounded="true" mdbWavesEffect type="button" class="m-0" (click)="deleteData(employee)">
+            <button mdbBtn color="danger" size="sm" rounded="true" mdbWavesEffect type="button" class="m-0"
+                    (click)="$event.stopPropagation(); deleteData(employee)">
               <mdb-icon fas icon="trash" class="mr-1"></mdb-icon>Delete
             </button>
-            <button mdbBtn color="dark" size="sm" rounded="true" mdbWavesEffect type="button" class="m-0" (click)="openModal(employee)">
+            <button mdbBtn color="dark" size="sm" rounded="true" mdbWavesEffect type="button" class="m-0"
+                    (click)="$event.stopPropagation(); openModal(employee)">
               <mdb-icon fas icon="edit" class="mr-1"></mdb-icon>Edit
             </button>
           </div>

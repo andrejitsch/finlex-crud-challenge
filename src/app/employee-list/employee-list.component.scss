@@ -11,3 +11,7 @@ table.table td, table.table th {
     margin-right: 10px !important;
   }
 }
+
+tbody tr:hover {
+  background-color: lightgrey;
+}
