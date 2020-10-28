@@ -26,4 +26,8 @@ export class ApiService {
     // @ts-ignore
     return this.http.put<any[]>('https://dummy.restapiexample.com/api/v1/update/' + objectID.toString() + '?' + object);
   }
+
+  getEmployeeByID(objectID): Observable<any> {
+    return  this.http.get<any[]>('https://dummy.restapiexample.com/api/v1/employee/' + objectID.toString());
+  }
 }
