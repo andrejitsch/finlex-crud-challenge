@@ -52,9 +52,7 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
     this.getData();
     this.dataService.currentText.subscribe(txt => {
       this.textSearch = txt;
-      if (this.textSearch !== '') {
-        this.searchItems();
-      }
+      this.searchItems();
     });
   }
 
@@ -66,7 +64,6 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
         age: prop.employee_age,
         salary: prop.employee_salary
       }));
-      console.log(this.employeeList);
       this.mdbTable.setDataSource(this.employeeList);
       this.employeeList = this.mdbTable.getDataSource();
       this.previous = this.mdbTable.getDataSource();
@@ -88,10 +85,8 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
 
     this.modalRf.content.action.subscribe((result: any) => {
       if (result.data) {
-        console.log(employee.id);
         this.api.deleteData(employee.id).subscribe(response => {
           this.deleteEntryFromList(employee.id);
-          console.log(response);
           this.toastr.success(response.message);
         }, error => {
           this.toastr.error(error.message);
@@ -101,8 +96,8 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   }
 
   deleteEntryFromList(employeeID) {
-    const findingRow = this.employeeList.findIndex(obj => obj.id === employeeID);
-    this.mdbTable.removeRow(findingRow);
+   const findingRow = this.mdbTable.getDataSource().findIndex(employee => employee.id === employeeID);
+   this.mdbTable.removeRow(findingRow);
   }
 
 
@@ -117,24 +112,26 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
       console.log(result.triggerMethod);
       if (result) {
         if (result.triggerMethod === 'add') {
-          console.log(result.data);
-          this.employeeList.unshift(result.data);
+          this.mdbTable.addRow(result.data);
+          console.log(this.employeeList);
         } else {
-          console.log('Edit is triggering');
           this.editEntryInList(result.data);
         }
-        this.mdbTable.setDataSource(this.employeeList);
       }
     });
   }
 
   editEntryInList(emloyee) {
-    this.employeeList.forEach((item, index ) => {
+    this.mdbTable.getDataSource().forEach((item, index) => {
       if (item.id === emloyee.id) {
-        this.employeeList[index] = emloyee;
-        console.log(this.employeeList[index]);
+        this.mdbTable.getDataSource()[index] = emloyee;
       }
-      this.mdbTable.setDataSource(this.employeeList);
+    });
+  }
+
+  emitDataSourceChange() {
+    this.mdbTable.dataSourceChange().subscribe(data => {
+      console.log(data);
     });
   }
 
@@ -142,7 +139,7 @@ export class EmployeeListComponent implements OnInit, AfterViewInit {
   searchItems() {
     const prev = this.mdbTable.getDataSource();
     if (!this.textSearch) {
-      this.mdbTable.setDataSource(this.previous);
+      this.mdbTable.setDataSource(prev);
       this.employeeList = this.mdbTable.getDataSource();
     }
     if (this.textSearch) {

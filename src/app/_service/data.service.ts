@@ -13,6 +13,5 @@ export class DataService {
 
   changeMessage(message: string) {
     this.textSource.next(message);
-    console.log('Service: ' + message);
   }
 }
